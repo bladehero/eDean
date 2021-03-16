@@ -31,7 +31,7 @@ namespace DeanDb
 
         public override string ToString()
         {
-            return $"{Number}{Faculty.Name}{AdditionalNumber?.ToString()}";
+            return $"{Number}{Faculty?.Name}{AdditionalNumber?.ToString()}";
         }
     }
 }

@@ -37,7 +37,7 @@ namespace eDean.Settings
               InlineKeyboardButton.WithCallbackData("Что нужно пересдать?", "/retakes"),
           }
         });
-        const string token = "525574032:AAG806BI7fsZjiQXiG2sy5smrlyOVQwBLwk";
+        const string token = "1618636814:AAGnwo1s7YmiGSEdRc3ybjyOUPTAgNpg3sE";
         private static List<Command> commandsList;
 
         public static DateTime Start { get; set; } = DateTime.Now;
