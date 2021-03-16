@@ -360,12 +360,7 @@ namespace eDean.Settings
         }
         public static string CreatePassword(string login)
         {
-            string password = String.Empty;
-            for (int i = 0; i < login.Length; i++)
-            {
-                password += (char)((login[i] ^ login.Length) % (122 - 98) + 97);
-            }
-            return password;
+            return $"{login}";
         }
         private static string ValidatePhoneNumber(string custom)
         {
