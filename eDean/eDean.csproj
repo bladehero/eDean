@@ -208,5 +208,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DeanDb\DeanDb.csproj">
+      <Project>{50d91d45-04e9-4cc8-ab34-df69d786912d}</Project>
+      <Name>DeanDb</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
