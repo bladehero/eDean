@@ -1,0 +1,25 @@
+﻿<Window x:Class="eDean.Tabs.UsersWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:eDean.Tabs"
+        mc:Ignorable="d"
+        Height="250" Width="450" MinWidth="450" MinHeight="250">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <DataGrid Name="dataGrid" Margin="3"/>
+
+        <StackPanel Orientation="Horizontal" Margin="0,7,0,0" Grid.Column="1" VerticalAlignment="Top" Name="infoPanel" Visibility="Collapsed">
+            <TextBlock Name="labelInfoTb" FontWeight="DemiBold" Margin="7,0"/>
+            <TextBlock Name="infoTb" Margin="7,0"/>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.Column="1" VerticalAlignment="Bottom">
+            <Button Content="Удалить" Margin="3,3,3,0" Padding="7,3" Click="DelButton_Click"/>
+            <Button Content="Сохранить" Margin="3"  Padding="7,3" Click="SaveButton_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

@@ -1,0 +1,51 @@
+﻿<Window x:Class="eDean.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:eDean"
+        mc:Ignorable="d"
+        Title="eDean" Height="250" Width="400" WindowStyle="SingleBorderWindow" 
+        MinWidth="400" MaxWidth="400" MinHeight="250" MaxHeight="250">
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <WrapPanel Margin="7" HorizontalAlignment="Center" VerticalAlignment="Center" Name="mainPanel" Visibility="Collapsed">
+            <Button Visibility="Collapsed" Click="DeansBtn_Click" Margin="3" Content="Зав. отделениями" Name="deansBtn" Padding="7,3" Width="120"/>
+            <Button Visibility="Collapsed" Click="SecretariesBtn_Click" Margin="3" Content="Секретари" Name="secretariesBtn" Padding="7,3" Width="120"/>
+            <Button Visibility="Collapsed" Click="TeachersBtn_Click" Margin="3" Content="Преподаватели" Name="teachersBtn" Padding="7,3" Width="120"/>
+            <Button Visibility="Collapsed" Click="StudentsBtn_Click" Margin="3" Content="Студенты" Name="studentsBtn" Padding="7,3" Width="120"/>
+            <Button Visibility="Collapsed" Click="SubjectsBtn_Click" Margin="3" Content="Предметы" Name="subjectsBtn" Padding="7,3" Width="120"/>
+            <Button Visibility="Collapsed" Click="GroupsBtn_Click" Margin="3" Content="Группы" Name="groupsBtn" Padding="7,3" Width="120"/>
+            <Button Visibility="Collapsed" Click="FacultiesBtn_Click" Margin="3" Content="Факультеты" Name="facultiesBtn" Padding="7,3" Width="120"/>
+            <Button Visibility="Collapsed" Click="CoursesBtn_Click" Margin="3" Content="Курсы" Name="coursesBtn" Padding="7,3" Width="120"/>
+            <Button Visibility="Collapsed" Click="MarksBtn_Click" Margin="3" Content="Оценки" Name="marksBtn" Padding="7,3" Width="120"/>
+            <Button Visibility="Collapsed" Click="SkipsBtn_Click" Margin="3" Content="Пропуски" Name="skipsBtn" Padding="7,3" Width="120"/>
+            <Button Visibility="Collapsed" Click="RetakesBtn_Click" Margin="3" Content="Пересдачи" Name="retakesBtn" Padding="7,3" Width="120"/>
+            <Button Visibility="Collapsed" Click="MoreInfoBtn_Click" Margin="3" Content="Доп. информация" Name="moreInfoBtn" Padding="7,3" Width="120"/>
+        </WrapPanel>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Name="loginPanel" Width="150" Panel.ZIndex="10" Visibility="Visible">
+            <TextBlock Text="Пользователь:" FontWeight="DemiBold" Margin="3,0,3,3" HorizontalAlignment="Center"/>
+            <ComboBox Name="userCb">
+                <ComboBoxItem>Зав. отделением</ComboBoxItem>
+                <ComboBoxItem>Секретарь</ComboBoxItem>
+                <ComboBoxItem>Преподаватель</ComboBoxItem>
+            </ComboBox>
+            <TextBlock Text="Логин:" FontWeight="DemiBold" Margin="3" HorizontalAlignment="Center"/>
+            <TextBox Name="phoneTb"/>
+            <TextBlock Text="Пароль:" FontWeight="DemiBold" Margin="3" HorizontalAlignment="Center"/>
+            <PasswordBox Name="passwordBox"/>
+            <Button Content="Войти" Margin="0,13" Click="Login_Click" Padding="7,2"/>
+        </StackPanel>
+        <TextBlock Text="❗            ❗" FontSize="80" Foreground="Red" VerticalAlignment="Center" HorizontalAlignment="Center"
+                   Visibility="Collapsed" Name="errorTb"/>
+
+        <Grid Grid.Row="1" Name="subGrid" Visibility="Collapsed">
+            <Button Click="SettingsBtn_Click" Content="Настройки" Name="settingsBtn"  Width="90" HorizontalAlignment="Left" Margin="3"/>
+            <Button Click="ExitBtn_Click" Content="Выйти" Name="exitBtn"  Width="90"  HorizontalAlignment="Right" Margin="3"/>
+        </Grid>
+    </Grid>
+</Window>
