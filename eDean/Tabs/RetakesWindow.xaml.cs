@@ -23,7 +23,7 @@ namespace eDean.Tabs
             subjectCb.ItemsSource = subjects.Select(s => s.Name).ToList();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private async void Button_Click(object sender, RoutedEventArgs e)
         {
             bool error = false;
             if (String.IsNullOrWhiteSpace(audTb.Text))
@@ -62,35 +62,27 @@ namespace eDean.Tabs
 
             bool checker = allSubjectsCb.IsChecked == true;
             string name = subjectCb.Text;
-            Task.Run(new Action(() =>
-            {
-                List<Mark> list;
-                if (checker)
-                    list = Data.Context.Marks.Include(s => s.Student).Where(s => s.Student.ChatId != 0).ToList();
-                else
-                    list = Data.Context.Marks.Include(s => s.Student).Include(s => s.Course.Subject)
-                    .Where(s => s.Student.ChatId != 0 && s.Course.Subject.Name == name).ToList();
+            List<Mark> list;
+            if (checker)
+                list = Data.Context.Marks.Include(s => s.Student).Where(s => s.Student.ChatId != 0).ToList();
+            else
+                list = Data.Context.Marks.Include(s => s.Student).Include(s => s.Course.Subject)
+                .Where(s => s.Student.ChatId != 0 && s.Course.Subject.Name == name).ToList();
 
-                foreach (var item in list)
+            foreach (var item in list)
+            {
+                if (item.Value <= 2)
                 {
-                    if (item.Value <= 2)
-                    {
-                        nonachievers.Add(item.Student);
-                    }
+                    nonachievers.Add(item.Student);
                 }
-                nonachievers = nonachievers.Distinct().ToList();
-            }));
+            }
+            nonachievers = nonachievers.Distinct().ToList();
 
             var result = MessageBox.Show($"Отправить уведомление:\n\n\"{text}\"\n\nвсем неуспевающим студентам?", "Отправка", MessageBoxButton.OKCancel, MessageBoxImage.Question);
             if (result == MessageBoxResult.OK)
             {
-                Task.Run(new Action(() =>
-                {
-                    foreach (var nonachiever in nonachievers)
-                    {
-                        Data.Bot.SendTextMessageAsync(nonachiever.ChatId, text);
-                    }
-                }));
+                var tasks = nonachievers.Select(x => Data.Bot.SendTextMessageAsync(x.ChatId, text));
+                await Task.WhenAll(tasks);
                 Close();
             }
         }
